@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>jqIpLocation jQuery IP Location Plugin Demo</title>
+<script type="text/javascript" src="jquery-1.6.3.min.js"></script>
+<script type="text/javascript" src="jqIpLocation.js"></script>
+ 
+ <style>
+body{
+background-color:#F4F4EE; 
+font:13px tahoma,Geneva,sans-serif; 
+}
+
+h1 {
+    color: #505050;
+    font-size: 30px;
+    margin: 0;
+    padding: 15px 0;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+#divIP{ height:200px;}
+.title {color:#AAA;width:100px;}
+.result {width:400px;color:#2786C2}
+
+a
+{
+color:#888888;text-decoration:none; 
+}
+a:hover
+{
+ color: #333;
+
+}
+</style>
+
+<script type="text/javascript" >
+
+function getLocation()
+{
+ if($('#txtIP').val()!="")
+ {
+    $('#divIP').empty().append('<div style="padding:3px;"><img src="loader.gif" /></div>');
+    $.jqIpLocation({
+    ip : $('#txtIP').val(),
+    locationType : 'city',
+	success: function(location) {
+			$('#divIP').empty();
+            $('#divIP').append('<div><span class="title">IP : </span><span class="result">'+location.ipAddress+'</span></div>');
+			$('#divIP').append('<div><span class="title">Country : </span><span class="result">'+location.countryName+'</span></div>');
+			$('#divIP').append('<div><span class="title">Country Code : </span><span class="result">'+location.countryCode+'</span></div>');
+			$('#divIP').append('<div><span class="title">City : </span><span class="result">'+location.cityName+'</span></div>');
+			$('#divIP').append('<div><span class="title">Region : </span><span class="result">'+location.cityName+'</span></div>');
+			$('#divIP').append('<div><span class="title">Latitude : </span><span class="result">'+location.latitude+'</span></div>');
+			$('#divIP').append('<div><span class="title">Longitude : </span><span class="result">'+location.longitude+'</span></div>');
+       }
+   });
+  }
+
+}
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3621996-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div style="padding-left:20px">
+<h1>jqIpLocation&nbsp;&nbsp;jQuery IP Location Plugin Demo </h1>
+<br/>
+
+ <div>IP Adress : <input id="txtIP" type="text" style="width:200px;font-size:12px;" value="213.243.4.20" />
+	<input type="button" value="Get Location"  onclick="javascript:getLocation();" />
+ </div>
+<br/>
+<div id="divIP"></div>
+
+<a href="jqIpLocation.html">Return To jqIpLocation HomePage</a>
+
+</div>
+</body>
+
+</html>
